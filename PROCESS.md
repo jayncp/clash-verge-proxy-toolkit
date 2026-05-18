@@ -10,7 +10,8 @@
 - [completed] Create public `injection_component.example.yaml`
 - [completed] Extract public AdsPower fingerprint example into `docs/`
 - [completed] Verify public-ready layout and checks
-- [in-progress] Rebuild Git history into clean public commits
+- [completed] Rebuild Git history into clean public commits
+- [completed] Re-scan Git history for sensitive values
 
 Notes:
 - `uv init` panicked twice on this macOS environment (`uv 0.9.26`), so the project metadata was created manually in the standard `uv` layout.

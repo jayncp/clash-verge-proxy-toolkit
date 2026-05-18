@@ -18,5 +18,5 @@
 - [x] Extract AdsPower fingerprint into a public example document.
 - [x] Rewrite README for the cleaned layout.
 - [x] Run typecheck, lint, and script smoke checks.
-- [ ] Rebuild Git history into clean public commits.
-- [ ] Re-scan the final history for sensitive values.
+- [x] Rebuild Git history into clean public commits.
+- [x] Re-scan the final history for sensitive values.
