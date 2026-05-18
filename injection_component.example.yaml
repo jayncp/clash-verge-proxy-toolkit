@@ -1,0 +1,59 @@
+# Clash Verge Rev 住宅IP链式代理注入配置示例
+# 复制为 injection_component.yaml 后，填入本地住宅代理信息。
+#
+# 链式代理流量链路 (通过 dialer-proxy 实现):
+#   客户端 -> 订阅节点(中转) -> 住宅IP代理 -> 目标网站
+#   客户端 <- 订阅节点(中转) <- 住宅IP代理 <- 目标网站
+
+# 住宅IP代理节点
+# dialer-proxy: 使用 __DIALER_PROXY__ 占位符，inject.py 会自动替换为各订阅的主代理组名。
+proxies:
+  - name: "住宅IP-US-IPdodo"
+    type: socks5
+    server: ""
+    port: 0
+    username: ""
+    password: ""
+    dialer-proxy: "__DIALER_PROXY__"
+    udp: true
+
+# 代理组 - 将住宅IP节点组织成可选组
+proxy-groups:
+  - name: "Claude-住宅链式专线"
+    type: select
+    proxies:
+      - "住宅IP-US-IPdodo"
+
+# 分流规则 - 匹配的流量走链式代理，其他流量不受影响
+# PROCESS-NAME 规则需要 Clash Verge 开启 TUN 模式才能匹配进程名。
+rules:
+  - "PROCESS-NAME,SunBrowser,Claude-住宅链式专线"
+  - "PROCESS-NAME,SunBrowser Helper,Claude-住宅链式专线"
+  - "PROCESS-NAME,AdsPower Global Helper,Claude-住宅链式专线"
+  - "PROCESS-NAME,AdsPower Global,Claude-住宅链式专线"
+  - "PROCESS-NAME,codex,Claude-住宅链式专线"
+  - "PROCESS-NAME,Claude,Claude-住宅链式专线"
+  - "PROCESS-NAME,Claude Helper,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,anthropic.com,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,claude.ai,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,claude.com,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,clau.de,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,claudemcpclient.com,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,claudeusercontent.com,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,sentry.io,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,statsigapi.net,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,intercom.io,Claude-住宅链式专线"
+  - "DOMAIN-SUFFIX,intercomcdn.com,Claude-住宅链式专线"
+  - "DOMAIN,servd-anthropic-website.b-cdn.net,Claude-住宅链式专线"
+  - "DOMAIN,anthropic.com.cdn.cloudflare.net,Claude-住宅链式专线"
+  - "DOMAIN,anthropic.auth0.com,Claude-住宅链式专线"
+  - "DOMAIN,anthropic-com.ghost.io,Claude-住宅链式专线"
+  - "DOMAIN,browser-intake-us5-datadoghq.com,Claude-住宅链式专线"
+  - "DOMAIN,cdn.usefathom.com,Claude-住宅链式专线"
+  - "IP-CIDR,160.79.104.0/21,Claude-住宅链式专线,no-resolve"
+  - "IP-CIDR6,2607:6bc0::/32,Claude-住宅链式专线,no-resolve"
+  - "IP-ASN,399358,Claude-住宅链式专线,no-resolve"
+  - "DOMAIN-KEYWORD,anthropic,Claude-住宅链式专线"
+  - "DOMAIN-KEYWORD,claude,Claude-住宅链式专线"
+  - "DOMAIN-KEYWORD,datadog,Claude-住宅链式专线"
+  - "DOMAIN-KEYWORD,sift,Claude-住宅链式专线"
