@@ -1,0 +1,6 @@
+.venv/
+.ruff_cache/
+.claude/
+system_profile.txt
+clash-meta-android.yaml
+clash-meta-android-*.yaml

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.ruff_cache/
+.claude/
+*.pyc
+docs/local/
+injection_component.yaml
+system_profile*.txt
+clash-meta-android*.yaml
